@@ -12,10 +12,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final counterCubit = CounterCubit();
-
   @override
   Widget build(BuildContext context) {
+    final counterCubit = BlocProvider.of<CounterCubit>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
