@@ -11,9 +11,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  final counter = CounterCubit().state;
+  final counterCubit = CounterCubit();
+
   @override
   Widget build(BuildContext context) {
+    final counter = counterCubit.state;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
@@ -35,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          CounterCubit().increment();
+          counterCubit.increment();
+          setState(() {});
         },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
