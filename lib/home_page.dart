@@ -36,17 +36,28 @@ class _MyHomePageState extends State<MyHomePage> {
                     '$counter',
                     style: Theme.of(context).textTheme.headlineMedium,
                   );
-                })
+                }),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          counterCubit.increment();
-          setState(() {});
-        },
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+            onPressed: () {
+              counterCubit.decrement();
+            },
+            tooltip: 'decrement',
+            child: const Icon(Icons.minimize),
+          ),
+          FloatingActionButton(
+            onPressed: () {
+              counterCubit.increment();
+            },
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+        ],
       ),
     );
   }
