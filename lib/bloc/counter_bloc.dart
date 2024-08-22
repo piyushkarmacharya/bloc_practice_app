@@ -1,10 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
+part 'counter_event.dart';
 
-sealed class CounterEvent {}
-
-class CounterIncrement extends CounterEvent {}
-
-class CounterDecrement extends CounterEvent {}
 //these are the events
 //we cannot make function and call emit in bloc. we need to call an event
 
