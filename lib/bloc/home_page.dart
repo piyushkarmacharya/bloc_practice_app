@@ -1,4 +1,5 @@
 import 'package:bloc_counter_app/bloc/counter_bloc.dart';
+import 'package:bloc_counter_app/bloc/increment_decrement_page_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,11 +15,15 @@ class MyHomePage1 extends StatefulWidget {
 class _MyHomePage1State extends State<MyHomePage1> {
   @override
   Widget build(BuildContext context) {
-    final counterBloc = BlocProvider.of<CounterBloc>(context);
     return Scaffold(
       appBar: AppBar(
         actions: [
-          ElevatedButton(onPressed: () {}, child: Icon(Icons.next_plan))
+          ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => IncrementDecrementPage()));
+              },
+              child: Icon(Icons.next_plan))
         ],
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
@@ -31,14 +36,13 @@ class _MyHomePage1State extends State<MyHomePage1> {
               'You have pushed the button this many times:',
             ),
             BlocBuilder<CounterBloc, int>(
-                bloc:
-                    counterBloc, //it gives us value of counter based on counter cubit
+                //it gives us value of counter based on counter bloc
                 builder: (context, counter) {
-                  return Text(
-                    '$counter',
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  );
-                }),
+              return Text(
+                '$counter',
+                style: Theme.of(context).textTheme.headlineMedium,
+              );
+            }),
           ],
         ),
       ),
