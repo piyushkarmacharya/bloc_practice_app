@@ -14,7 +14,9 @@ class IncrementDecrementPage extends StatelessWidget {
       body: Column(
         children: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              counterBloc.add(CounterDecrement());
+            },
             style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
             child: const Icon(Icons.minimize),
           ),
