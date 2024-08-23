@@ -24,7 +24,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 Navigator.of(context).push(MaterialPageRoute(
                     builder: (context) => const IncrementDecrementPage()));
               },
-              child: Icon(Icons.next_plan))
+              child: const Icon(Icons.next_plan))
         ],
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),

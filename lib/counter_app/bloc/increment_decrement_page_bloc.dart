@@ -20,7 +20,7 @@ class IncrementDecrementPage extends StatelessWidget {
             style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
             child: const Icon(Icons.minimize),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           ElevatedButton(

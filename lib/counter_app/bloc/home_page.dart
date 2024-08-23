@@ -21,9 +21,9 @@ class _MyHomePage1State extends State<MyHomePage1> {
           ElevatedButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => IncrementDecrementPage()));
+                    builder: (context) => const IncrementDecrementPage()));
               },
-              child: Icon(Icons.next_plan))
+              child: const Icon(Icons.next_plan))
         ],
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
