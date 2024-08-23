@@ -1,3 +1,4 @@
+import 'package:bloc_counter_app/todo_app/add_todo.dart';
 import 'package:bloc_counter_app/todo_app/model/todo.dart';
 import 'package:bloc_counter_app/todo_app/todo_cubit.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,14 @@ class TodoHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Your Todos are as follows"),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) => AddTodo()));
+              },
+              icon: const Icon(Icons.add))
+        ],
       ),
       body: BlocBuilder<TodoCubit, List<Todo>>(
         builder: (context, todos) {
