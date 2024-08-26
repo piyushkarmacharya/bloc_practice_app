@@ -10,6 +10,20 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLoginRequest>(_onAuthLoginRequested);
     on<AuthLogoutRequest>(_onAuthLogoutRequested);
   }
+  @override
+  void onChange(Change<AuthState> change) {
+    super.onChange(change);
+    debugPrint("From onChange : ${change.toString()}");
+  }
+
+  //onTransition also give us the event which cause the transition but on change donot give
+  //onTransition is not available in cubit as cubit donot work on event
+  @override
+  void onTransition(Transition<AuthEvent, AuthState> transition) {
+    super.onTransition(transition);
+    debugPrint("From onTransition : ${transition.toString()}");
+  }
+
   void _onAuthLoginRequested(
       AuthLoginRequest event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
