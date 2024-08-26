@@ -15,7 +15,7 @@ class Homepage extends StatelessWidget {
       },
       builder: (context, state) {
         if (state is AuthLoading) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (state is AuthSuccess) {
@@ -29,12 +29,12 @@ class Homepage extends StatelessWidget {
                       BlocProvider.of<AuthBloc>(context)
                           .add(AuthLogoutRequest());
                     },
-                    icon: Icon(Icons.logout))
+                    icon: const Icon(Icons.logout))
               ],
             ),
           );
         } else {
-          return Scaffold();
+          return const Scaffold();
         }
       },
     );

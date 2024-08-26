@@ -10,7 +10,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<AuthLoginRequest>(_onAuthLoginRequested);
     on<AuthLogoutRequest>(_onAuthLogoutRequested);
   }
-  void _onAuthLoginRequested(event, emit) async {
+  void _onAuthLoginRequested(
+      AuthLoginRequest event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     //donot keep return as we need to run below codes after this
     try {
@@ -35,7 +36,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     }
   }
 
-  void _onAuthLogoutRequested(event, emit) async {
+  void _onAuthLogoutRequested(
+      AuthLogoutRequest event, Emitter<AuthState> emit) async {
     emit(AuthLoading());
     try {
       await Future.delayed(const Duration(seconds: 2), () {
