@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -27,7 +26,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Login Page"),
+          title: const Text("Login Page"),
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -54,7 +53,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Center(
                         child: ElevatedButton(
-                            onPressed: () {}, child: Text("Login"))),
+                            onPressed: () {}, child: const Text("Login"))),
                   ],
                 ),
               )),
