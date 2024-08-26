@@ -1,4 +1,5 @@
 import 'package:bloc_counter_app/login_using_bloc/bloc/auth_bloc.dart';
+import 'package:bloc_counter_app/login_using_bloc/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -30,41 +31,53 @@ class _LoginPageState extends State<LoginPage> {
         appBar: AppBar(
           title: const Text("Login Page"),
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Form(
-              key: _formKey,
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Text("Email"),
-                    TextFormField(
-                      controller: emailCtr,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const Text("Password"),
-                    TextFormField(
-                      controller: passwordCtr,
-                      obscureText: true,
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Center(
-                        child: ElevatedButton(
-                            onPressed: () {
-                              BlocProvider.of<AuthBloc>(context).add(
-                                  AuthLoginRequest(
-                                      email: emailCtr.text,
-                                      password: passwordCtr.text));
-                            },
-                            child: const Text("Login"))),
-                  ],
-                ),
-              )),
+        body: BlocListener<AuthBloc, AuthState>(
+          listener: (context, state) {
+            if (state is AuthFail) {
+              ScaffoldMessenger.of(context)
+                  .showSnackBar(SnackBar(content: Text(state.error)));
+            }
+            if (state is AuthSuccess) {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => Homepage(name: state.usr.name)));
+            }
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Form(
+                key: _formKey,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Email"),
+                      TextFormField(
+                        controller: emailCtr,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      const Text("Password"),
+                      TextFormField(
+                        controller: passwordCtr,
+                        obscureText: true,
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Center(
+                          child: ElevatedButton(
+                              onPressed: () {
+                                BlocProvider.of<AuthBloc>(context).add(
+                                    AuthLoginRequest(
+                                        email: emailCtr.text,
+                                        password: passwordCtr.text));
+                              },
+                              child: const Text("Login"))),
+                    ],
+                  ),
+                )),
+          ),
         ));
   }
 }
