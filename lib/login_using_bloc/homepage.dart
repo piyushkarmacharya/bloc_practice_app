@@ -7,7 +7,6 @@ class Homepage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final authState = context.watch<AuthBloc>().state as AuthSuccess;
     return BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {
         if (state is AuthInitial) {
@@ -15,18 +14,28 @@ class Homepage extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(authState.usr.name),
-            actions: [
-              IconButton(
-                  onPressed: () {
-                    BlocProvider.of<AuthBloc>(context).add(AuthLogoutRequest());
-                  },
-                  icon: Icon(Icons.logout))
-            ],
-          ),
-        );
+        if (state is AuthLoading) {
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        } else if (state is AuthSuccess) {
+          final authState = context.watch<AuthBloc>().state as AuthSuccess;
+          return Scaffold(
+            appBar: AppBar(
+              title: Text(authState.usr.name),
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      BlocProvider.of<AuthBloc>(context)
+                          .add(AuthLogoutRequest());
+                    },
+                    icon: Icon(Icons.logout))
+              ],
+            ),
+          );
+        } else {
+          return Scaffold();
+        }
       },
     );
   }
