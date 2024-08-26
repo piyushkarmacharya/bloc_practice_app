@@ -1,4 +1,6 @@
+import 'package:bloc_counter_app/login_using_bloc/bloc/auth_bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -53,7 +55,13 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     Center(
                         child: ElevatedButton(
-                            onPressed: () {}, child: const Text("Login"))),
+                            onPressed: () {
+                              BlocProvider.of<AuthBloc>(context).add(
+                                  AuthLoginRequest(
+                                      email: emailCtr.text,
+                                      password: passwordCtr.text));
+                            },
+                            child: const Text("Login"))),
                   ],
                 ),
               )),
