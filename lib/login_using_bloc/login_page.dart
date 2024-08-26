@@ -38,8 +38,8 @@ class _LoginPageState extends State<LoginPage> {
                 .showSnackBar(SnackBar(content: Text(state.error)));
           }
           if (state is AuthSuccess) {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => Homepage(name: state.usr.name)));
+            Navigator.of(context).push(
+                MaterialPageRoute(builder: (context) => const Homepage()));
           }
         },
         builder: (context, state) {
