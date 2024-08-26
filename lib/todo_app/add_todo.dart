@@ -10,7 +10,7 @@ class AddTodo extends StatelessWidget {
     final todoCubit = BlocProvider.of<TodoCubit>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text("Add Todo below"),
+        title: const Text("Add Todo below"),
       ),
       body: Column(
         children: [
@@ -21,7 +21,7 @@ class AddTodo extends StatelessWidget {
               onPressed: () {
                 todoCubit.addTodo(ctr.text.trim());
               },
-              child: Text("add"))
+              child: const Text("add"))
         ],
       ),
     );

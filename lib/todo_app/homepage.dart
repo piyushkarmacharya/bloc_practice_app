@@ -11,7 +11,7 @@ class TodoHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Your Todos are as follows"),
+        title: const Text("Your Todos are as follows"),
         actions: [
           IconButton(
               onPressed: () {
