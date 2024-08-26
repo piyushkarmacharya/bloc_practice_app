@@ -8,6 +8,8 @@ part 'auth_state.dart';
 class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc() : super(AuthInitial()) {
     on<AuthLoginRequest>((event, emit) async {
+      emit(AuthLoading());
+      //donot keep return as we need to run below codes after this
       try {
         final email = event.email;
         final password = event.password;

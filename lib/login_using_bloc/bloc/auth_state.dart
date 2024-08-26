@@ -18,3 +18,5 @@ final class AuthFail extends AuthState {
     debugPrint(error);
   }
 }
+
+final class AuthLoading extends AuthState {}
